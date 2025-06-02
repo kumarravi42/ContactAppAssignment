@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0F7FA"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<!--    <EditText-->
+<!--        android:id="@+id/searchEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Search contacts"-->
+<!--        android:padding="16dp"-->
+<!--        android:background="@android:color/white" />-->
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Contacts Found"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewContacts"
+        android:layout_width="match_parent"
+        android:layout_below="@id/name"
+        tools:itemCount="3"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/contact_item"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:weightSum="4"
+        android:layout_below="@id/recyclerViewContacts">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/last_synced"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="last synced\n22 may 2025"
+            android:textSize="14sp"
+            android:layout_weight="2"
+            android:layout_gravity="start"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_sync"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="sync contacts"
+            android:layout_margin="20dp"
+            android:layout_weight="2"
+            android:textSize="16dp"
+            android:layout_gravity="end"
+            android:backgroundTint="#29B6F6"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</RelativeLayout>

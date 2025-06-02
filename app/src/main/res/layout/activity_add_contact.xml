@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/edit"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#E0F7FA"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:paddingBottom="16dp"
+                android:text="Add Contact"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/saveBtn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="100dp"
+                android:background="@drawable/bg_button"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Save"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <!-- Profile Picture -->
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/editImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/initial_circle"
+            android:contentDescription="Profile Image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/editImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="10dp"
+            android:text="Change Image"
+            android:textColor="@color/white" />
+
+        <!-- Name Field with Icon -->
+
+        <EditText
+            android:id="@+id/editNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button"
+            android:hint="first Name"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/surName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button"
+            android:hint="sur. Name"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/companyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button"
+            android:hint="Company"
+            android:padding="12dp" />
+
+
+        <!-- Phone Number Field -->
+        <EditText
+            android:id="@+id/editPhoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button"
+            android:hint="Phone(Mobile)"
+            android:inputType="phone"
+            android:padding="12dp" />
+
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/baseline_delete_24"
+        app:tint="@color/white"
+        />
+</RelativeLayout>
+
