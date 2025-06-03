@@ -4,47 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="#E3FAFF"
-    tools:ignore="HardcodedText"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
+    tools:ignore="HardcodedText">
 
-    <com.google.android.material.search.SearchBar
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etSearchContact"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/grey"
-        android:hint="Search contact"
-        android:focusable="true"
-        app:titleTextColor="@color/black"
-        android:id="@+id/searchBar"/>
+        android:layout_height="48dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_search_rounded"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="4dp"
+        android:drawableEnd="@drawable/menu_bar"
+        android:hint="Search contacts"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray" />
 
 
     <TextView
         android:id="@+id/emptyText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No Contact"
-        android:textSize="18sp"
-        android:visibility="gone"
+        android:layout_centerInParent="true"
         android:gravity="center"
+        android:fontFamily="@font/sailec_medium"
+        android:text="No Contact"
         android:textColor="#908F8F"
-        android:layout_centerInParent="true" />
+        android:textSize="18sp"
+        android:visibility="gone" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/searchBar"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/etSearchContact"
         tools:listitem="@layout/item_contact" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/syncButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:layout_alignParentEnd="true"
         android:layout_above="@id/addButton"
+        android:layout_alignParentEnd="true"
         android:layout_margin="10dp"
+        android:backgroundTint="@color/colorPrimary"
         android:contentDescription="sync contact"
         android:src="@drawable/sync_icon"
         app:tint="@color/white" />
@@ -53,12 +60,12 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
+        android:backgroundTint="@color/colorPrimary"
         android:contentDescription="add contact"
         android:src="@drawable/baseline_add_24"
-        app:tint="@color/white"/>
+        app:tint="@color/white" />
 
 </RelativeLayout>

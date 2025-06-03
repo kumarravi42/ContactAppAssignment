@@ -1,4 +1,4 @@
-package com.pw.contactappassignment
+package com.pw.contactappassignment.data.model
 
 data class Contact(
     val id: Int,

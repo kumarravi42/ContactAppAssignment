@@ -1,6 +1,7 @@
-package com.pw.contactappassignment
+package com.pw.contactappassignment.data.adapter
+
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -12,10 +13,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import java.util.Locale
+import com.pw.contactappassignment.R
+import com.pw.contactappassignment.data.model.Contact
+import java.io.FileNotFoundException
 
-class ContactAdapter(private val mContext: Context, private val contacts: List<Contact>) :
+class ContactAdapter(private val mContext: Context, private var contacts: List<Contact>) :
     RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+
     private val colorList = listOf(
         R.color.orange,
         R.color.green,
@@ -39,7 +43,7 @@ class ContactAdapter(private val mContext: Context, private val contacts: List<C
         val contact = contacts[position]
         holder.name.text = contact.name
 
-        // Set color based on position (repeats every 4 items)
+        // Set background color tint
         val colorResId = colorList[position % colorList.size]
         val color = ContextCompat.getColor(holder.itemView.context, colorResId)
         holder.tvContentSuffixName.backgroundTintList = ColorStateList.valueOf(color)
@@ -51,27 +55,37 @@ class ContactAdapter(private val mContext: Context, private val contacts: List<C
         } else {
             holder.image.visibility = View.GONE
             holder.tvContentSuffixName.visibility = View.VISIBLE
-            holder.tvContentSuffixName.text = contact.name?.substring(0, 1)?.uppercase()
+            holder.tvContentSuffixName.text = contact.name?.takeIf { it.isNotBlank() }
+                ?.substring(0, 1)?.uppercase() ?: "?"
         }
     }
 
     override fun getItemCount(): Int = contacts.size
 
-    fun loadImageFromFilePath(uriString: String, imageView: ImageView) {
-        try {
-            val uri = Uri.parse(uriString)
-            val inputStream = mContext.contentResolver.openInputStream(uri)
-            val bitmap = BitmapFactory.decodeStream(inputStream)
-            inputStream?.close()
-
-            if (bitmap != null) {
-                imageView.setImageBitmap(bitmap)
-            } else {
-                Log.e("TAG", "Bitmap is null")
-            }
-        } catch (e: Exception) {
-            Log.e("TAG", "Error loading image: ${e.message}")
-        }
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newList: List<Contact>) {
+        contacts = newList
+        notifyDataSetChanged()
     }
 
+    private fun loadImageFromFilePath(uriString: String, imageView: ImageView) {
+        try {
+            val uri = Uri.parse(uriString)
+            mContext.contentResolver.openInputStream(uri)?.use { inputStream ->
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap)
+                } else {
+                    imageView.setImageResource(R.drawable.initial_circle)
+                    Log.e("ContactAdapter", "Bitmap is null")
+                }
+            }
+        } catch (e: FileNotFoundException) {
+            imageView.setImageResource(R.drawable.initial_circle)
+            Log.e("ContactAdapter", "Image file not found: ${e.message}")
+        } catch (e: Exception) {
+            imageView.setImageResource(R.drawable.initial_circle)
+            Log.e("ContactAdapter", "Error loading image: ${e.message}")
+        }
+    }
 }

@@ -26,7 +26,7 @@
             android:gravity="center_vertical"
             android:padding="10dp"
             android:paddingBottom="16dp"
-            android:text="Add Contact"
+            android:text="Edit contact"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -72,10 +72,6 @@
         android:layout_below="@+id/view"
         android:orientation="vertical"
         android:padding="16dp">
-
-
-
-        <!-- Profile Picture -->
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/editImageView"
@@ -180,7 +176,6 @@
             android:fontFamily="@font/sailec_medium"
             android:imeOptions="actionDone"
             android:inputType="phone"
-            android:maxLength="10"
             android:padding="12dp"
             android:textColor="@color/black" />
 
